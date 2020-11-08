@@ -1,5 +1,3 @@
-# mako
-
 ## Build Setup
 
 ```bash
