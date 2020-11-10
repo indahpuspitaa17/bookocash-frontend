@@ -13,13 +13,13 @@
         <v-list-item>
               <v-list-item-avatar>
                 <img
-                  src="https://i.pinimg.com/originals/24/1d/db/241ddb998aaaf65e5785a37faefab82b.jpg"
+                  src="../assets/logo.png"
                   alt="Indah"
                 >
               </v-list-item-avatar>
 
               <v-list-item-content>
-                <v-list-item-title>Indah Puspita</v-list-item-title>
+                <v-list-item-title>Book O Cash</v-list-item-title>
               </v-list-item-content>
           </v-list-item>
         </v-list>
