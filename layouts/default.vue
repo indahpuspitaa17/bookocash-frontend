@@ -27,7 +27,9 @@
 
     <v-divider class="mx-4"></v-divider>
     
-      <v-list>
+      <v-list
+        dense
+        rounded>
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
