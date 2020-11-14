@@ -2,7 +2,7 @@
   <v-data-table
     :headers="headers"
     :items="desserts"
-    sort-by="calories"
+    sort-by="orderId"
     class="elevation-1"
   >
     <template v-slot:top>
@@ -39,8 +39,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.name"
-                      label="Dessert name"
+                      v-model="editedItem.nameCustomer"
+                      label="Customer name"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -49,8 +49,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.calories"
-                      label="Calories"
+                      v-model="editedItem.orderType"
+                      label="Order type"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -59,8 +59,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.fat"
-                      label="Fat (g)"
+                      v-model="editedItem.tableNumber"
+                      label="Table number"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -69,8 +69,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.carbs"
-                      label="Carbs (g)"
+                      v-model="editedItem.cashier"
+                      label="Cashier in Charge"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -79,8 +79,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.protein"
-                      label="Protein (g)"
+                      v-model="editedItem.satus"
+                      label="Status"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -122,7 +122,12 @@
     <template v-slot:item.actions="{ item }">
       <v-icon
         small
-        class="mr-2"
+        @click="detailItem(item)"
+      >
+        mdi-library-books
+      </v-icon>
+      <v-icon
+        small
         @click="editItem(item)"
       >
         mdi-pencil
@@ -151,33 +156,39 @@
       dialog: false,
       dialogDelete: false,
       headers: [
-        {
-          text: 'Dessert (100g serving)',
-          align: 'start',
-          sortable: false,
-          value: 'name',
-        },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
+        { text: 'Order Id', align: 'start', sortable: true, value: 'orderId' },
+        { text: 'Customer Name', value: 'nameCustomer' },
+        { text: 'Order Type', value: 'orderType' },
+        { text: 'Table Number', value: 'tableNumber' },
+        { text: 'Cashier', value: 'cashier' },
+        { text: 'Status', value: 'status' },
         { text: 'Actions', value: 'actions', sortable: false },
       ],
       desserts: [],
       editedIndex: -1,
+      detailItem: {
+        orderId: '',
+        nameCustomer: '',
+        orderType: '',
+        tableNumber: '',
+        cashier: '',
+        status: '',
+      },
       editedItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
+        orderId: '',
+        nameCustomer: '',
+        orderType: '',
+        tableNumber: '',
+        cashier: '',
+        status: '',
       },
       defaultItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
+        orderId: '',
+        nameCustomer: '',
+        orderType: '',
+        tableNumber: '',
+        cashier: '',
+        status: '',
       },
     }),
 
@@ -204,76 +215,77 @@
       initialize () {
         this.desserts = [
           {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
+            orderId: '#001',
+            nameCustomer: 'Ahmad',
+            orderType: 'Dine-in',
+            tableNumber: 6,
+            cashier: 'Bambang',
+            status: 'In process',
           },
           {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
+            orderId: '#002',
+            nameCustomer: 'Banjaran',
+            orderType: 'Dine-in',
+            tableNumber: 2,
+            cashier: 'Bambang',
+            status: 'In process',
           },
           {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
+            orderId: '#003',
+            nameCustomer: 'Bob',
+            orderType: 'Dine-in',
+            tableNumber: 4,
+            cashier: 'Bambang',
+            status: 'In process',
           },
           {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
+            orderId: '#004',
+            nameCustomer: 'Yuwono',
+            orderType: 'Dine-in',
+            tableNumber: 1,
+            cashier: 'Bambang',
+            status: 'In process',
           },
           {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
+            orderId: '#005',
+            nameCustomer: 'Aan',
+            orderType: 'Dine-in',
+            tableNumber: 7,
+            cashier: 'Bambang',
+            status: 'In process',
           },
           {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
+            orderId: '#006',
+            nameCustomer: 'Indah',
+            orderType: 'Dine-in',
+            tableNumber: 9,
+            cashier: 'Bambang',
+            status: 'In process',
           },
           {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
+            orderId: '#007',
+            nameCustomer: 'Fadia',
+            orderType: 'Take-away',
+            tableNumber: '-',
+            cashier: 'Bambang',
+            status: 'In process',
           },
           {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
+            orderId: '#008',
+            nameCustomer: 'Ahmad',
+            orderType: 'Take-away',
+            tableNumber: '-',
+            cashier: 'Bambang',
+            status: 'In process',
           },
         ]
+      },
+
+      //Nanti edit lagi, belum ada page menu pembelian euy
+      detailItem (item) {
+        this.editedIndex = this.desserts.indexOf(item)
+        this.editedItem = Object.assign({}, item)
+        this.dialog = true
       },
 
       editItem (item) {

@@ -47,7 +47,7 @@
 import OrderProcess from '../components/Sales/OrderProcess'
 import OrderFinished from '../components/Sales/OrderFinished'
 
-  export default {
+export default {
     name: 'sales',
   components: {
     OrderProcess,

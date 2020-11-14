@@ -7,29 +7,20 @@
       fixed
       app
     >
-    <!--Avatar-->
-    <v-layout column align-right>
+      <v-container>
+        <v-row justify="center" align="center">
+          <v-col cols="3">
+            <logo />
+          </v-col>
+          <v-col cols="7" class="black--text">
+            <span class="font-weight-bold Poppins"
+              >Book O Cash</span
+            >
+          </v-col>
+        </v-row>
+      </v-container>
+      <v-divider class="grey lighten-1 mx-4"></v-divider>
       <v-list>
-        <v-list-item>
-              <v-list-item-avatar>
-                <img
-                  src="../assets/logo.png"
-                  alt="Indah"
-                >
-              </v-list-item-avatar>
-
-              <v-list-item-content>
-                <v-list-item-title>Book O Cash</v-list-item-title>
-              </v-list-item-content>
-          </v-list-item>
-        </v-list>
-    </v-layout>
-
-    <v-divider class="mx-4"></v-divider>
-    
-      <v-list
-        dense
-        rounded>
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
@@ -41,40 +32,45 @@
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title v-text="item.title" class="font-weight Poppins"/>
           </v-list-item-content>
         </v-list-item>
       </v-list>
-
-      <template v-slot:append>
-        <div class="pa-2">
-          <v-btn block>
-            Logout
-          </v-btn>
-        </div>
-      </template>
     </v-navigation-drawer>
+
     <v-app-bar
       :clipped-left="clipped"
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />    
+      fixed
+      app>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+        <v-btn
+          icon
+          @click.stop="miniVariant = !miniVariant">
+        </v-btn>
+        <v-spacer />
     </v-app-bar>
+    
     <v-main>
       <v-container>
         <nuxt />
       </v-container>
     </v-main>
+    
     <v-footer
       :absolute="fixed"
       app
     >
-      <span>&copy; {{ new Date().getFullYear() }} — <strong>Indah Puspita</strong></span>
+      <span><b>Indah Puspita</b> &copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
+import Logo from '../components/Logo'
 export default {
+  components: {
+    Logo
+  },
   data () {
     return {
       clipped: false,
@@ -84,7 +80,7 @@ export default {
         {
           icon: 'mdi-view-dashboard',
           title: 'Dashboard',
-          to: '/'
+          to: '/dashboard'
         },
         {
           icon: 'mdi-sale',
@@ -97,7 +93,7 @@ export default {
           to: '/product'
         },
         {
-          icon: 'mdi-cart',
+          icon: 'mdi-archive',
           title: 'Inventory',
           to: '/inventory'
         },
@@ -107,9 +103,9 @@ export default {
           to: '/reporting'
         },
         {
-          icon: 'mdi-account',
+          icon: 'mdi-store',
           title: 'Store Profile',
-          to: '/storeProfile'
+          to: '/store'
         }
       ],
       miniVariant: false,
