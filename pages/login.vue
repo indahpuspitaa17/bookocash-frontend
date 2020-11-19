@@ -108,6 +108,42 @@ export default {
           ) || `${this.$('helper.wrong_email', 'capitalize')}`
       }
     }
+  },
+  mounted() {},
+  methods: {
+    async login() {
+      if (!this.$refs.form.validate()) {
+        this.success = false
+        this.messages = `${this.$translate(
+          'alert.login.warning',
+          'capitalize'
+        )}`
+        this.alert = true
+        return
+      }
+      try {
+        const result = await this.$api('user', 'login', this.input)
+        if (result.status === 200) {
+          this.success = true
+          this.messages = `${this.$translate(
+            'alert.login.success',
+            'capitalize'
+          )}`
+          this.alert = true
+        } else {
+          this.success = false
+          this.messages = `${this.$translate(
+            'alert.login.error',
+            'capitalize'
+          )}`
+          this.alert = true
+        }
+      } catch (e) {
+        this.success = false
+        this.messages = `${this.$translate('alert.error')}` + e.toString()
+        this.alert = true
+      }
+    }
   }
 }
 </script>
