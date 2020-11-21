@@ -13,8 +13,9 @@
         <v-spacer></v-spacer>
         <v-dialog
           v-model="dialog"
-          max-width="500px"
+          max-width="800px"
         >
+          <!-- ADD PRODUCT -->
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               color="primary"
@@ -31,53 +32,96 @@
             <v-card-title>
               <span class="headline">{{ formTitle }}</span>
             </v-card-title>
+            <v-row>
+              <!-- PRODUCT DETAILS -->
+              <v-col>
+                <v-card-text>
+                  <v-container>
+                    <div>
+                      Product Details
+                    </div>
+                    <v-row>
+                      
+                      <v-col
+                        cols="12"
+                        sm="6"
+                        md="6"
+                      >
+                        <v-text-field
+                          v-model="editedItem.name"
+                          label="Product"
+                          :rules="[v => !!v || 'Product is required']"
+                          required
+                        ></v-text-field>
+                      </v-col>
+                      <v-col
+                        cols="12"
+                        sm="6"
+                        md="6"
+                      >
+                        <v-select
+                          v-model="category"
+                          :items="category"
+                          :rules="[v => !!v || 'Category is required']"
+                          label="Category"
+                          required
+                        ></v-select>
+                      </v-col>
+                      <v-col
+                        cols="12"
+                        sm="6"
+                        md="6"
+                      >
+                        <v-text-field
+                          v-model="editedItem.price"
+                          label="Price"
+                          :rules="[v => !!v || 'Price is required']"
+                          required
+                        ></v-text-field>
+                      </v-col>
+                      <v-col
+                        cols="12"
+                        sm="6"
+                        md="6"
+                      >
+                        <v-text-field
+                          v-model="editedItem.hpp"
+                          label="HPP"
+                          :rules="[v => !!v || 'HPP is required']"
+                          required
+                        ></v-text-field>
+                      </v-col>
+                      <v-col>
+                      <v-file-input
+                        label="Click to upload product picture"
+                        filled
+                        prepend-icon="mdi-camera"
+                      ></v-file-input>
+                    </v-col>
+                    </v-row>
+                  </v-container>
+                </v-card-text>
+              </v-col>
 
-            <v-card-text>
-              <v-container>
-                <v-row>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.name"
-                      label="Product"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.category"
-                      label="Category"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.price"
-                      label="Price"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.hpp"
-                      label="HPP"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
+              <!-- INGREDIENTS -->
+              <v-col>
+                <v-card-text>
+                  <v-container>
+                    <div>
+                      Ingridients
+                    </div>
+                    <v-row >
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="12">
+                      <v-btn color="#827397" dark> ADD </v-btn>
+                    </v-col>
+                    </v-row>
+                  </v-container>
+                </v-card-text>
+              </v-col>
+            </v-row>
 
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -98,6 +142,8 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
+
+        <!-- DIALOG HAPUS -->
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
             <v-card-title class="headline">Are you sure you want to delete this item?</v-card-title>
@@ -147,6 +193,12 @@
     data: () => ({
       dialog: false,
       dialogDelete: false,
+      select: null,
+      category: [
+        'Food',
+        'Beverage',
+        'Dessert',
+      ],
       headers: [
         { text: 'Product', align: 'start', sortable: false,value: 'name', },
         { text: 'Category', value: 'category' },
@@ -158,13 +210,21 @@
       editedIndex: -1,
       editedItem: {
         name: '',
-        category: '',
+        category: [
+          'Food'||
+          'Beverage'||
+          'Dessert'
+        ],
         price: '',
         hpp: '',
       },
       defaultItem: {
         name: '',
-        category: '',
+        category: [
+          'Food'||
+          'Beverage'||
+          'Dessert',
+        ],
         price: '',
         hpp: '',
       },
@@ -190,23 +250,18 @@
     },
 
     methods: {
-      getColor (calories) {
-        if (calories < 40) return 'red'
-        else if (calories < 100) return 'orange'
-        else return 'green'
-      },
       initialize () {
         this.desserts = [
-          { name: 'Frozen Yogurt', category: 6.0, price: 'Rp 12.000', hpp: 'Rp 10.000', },
-          { name: 'Ice cream sandwich', category: 9.0, price: 'Rp 20.000', hpp: 'Rp 12.000', },
-          { name: 'Eclair', category: 16.0, price: 'Rp 23.000', hpp: 'Rp 20.000', },
-          { name: 'Cupcake', category: 3.7, price: 'Rp 90.000', hpp: 'Rp 82.000', },
-          { name: 'Gingerbread', category: 16.0, price: 'Rp 45.000', hpp: 'Rp 32.000', },
-          { name: 'Jelly bean', category: 0.0, price: 'Rp 43.000', hpp: 'Rp 39.000', },
-          { name: 'Lollipop', category: 0.2, price: 'Rp 67.000', hpp: 'Rp 62.000', },
-          { name: 'Honeycomb', category: 3.2, price: 'Rp 55.000', hpp: 'Rp 45.000', },
-          { name: 'Donut', category: 25.0, price: 'Rp 89.000', hpp: 'Rp 79.000', },
-          { name: 'KitKat', category: 26.0, price: 'Rp 78.000', hpp: 'Rp 70.000', },
+          { name: 'Frozen Yogurt', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 12.000', hpp: 'Rp 10.000', },
+          { name: 'Ice cream sandwich', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 20.000', hpp: 'Rp 12.000', },
+          { name: 'Eclair', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 23.000', hpp: 'Rp 20.000', },
+          { name: 'Cupcake', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 90.000', hpp: 'Rp 82.000', },
+          { name: 'Gingerbread', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 45.000', hpp: 'Rp 32.000', },
+          { name: 'Jelly bean', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 43.000', hpp: 'Rp 39.000', },
+          { name: 'Lollipop', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 67.000', hpp: 'Rp 62.000', },
+          { name: 'Honeycomb', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 55.000', hpp: 'Rp 45.000', },
+          { name: 'Donut', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 89.000', hpp: 'Rp 79.000', },
+          { name: 'KitKat', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 78.000', hpp: 'Rp 70.000', },
         ]
       },
 
