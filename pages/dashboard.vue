@@ -7,8 +7,13 @@
             :key="item"
             cols="24"
             sm="3">
-                <v-card color="#363062" dark class="pa-5">
+                <v-card color="#363062" dark class="pa-3">
                     <v-list-item>
+                        <v-list-item-action>
+                            <v-icon> 
+                                {{ item.icon }}
+                            </v-icon>
+                        </v-list-item-action>
                         <v-list-item-content>
                             <v-list-item-title 
                                 class="headline font-weight-black"
@@ -31,20 +36,17 @@
 <script>
 export default {
     head() {
-    return {
-      title: 'Dashboard',
-      script: [
-        {src:'/dashboard.js'}
-      ]
-    }
+        return {
+        title: 'Dashboard',
+        }
     },
     data() {
         return {
             summary: [
-                {name: 'Total Income', price: '13.000'},
-                {name: 'Total Customer', price: '14'},
-                {name: 'Total Sales', price: '15.000'},
-                {name: 'Total Product', price: '19.000'}
+                {name: 'Total Income', price: '13.000', icon: 'mdi-cash-multiple'},
+                {name: 'Total Sales', price: '15.000', icon: 'mdi-cash-multiple'},
+                {name: 'Total Product', price: '19.000', icon: 'mdi-cash-multiple'},
+                {name: 'Total Transaction', price: '89', icon: 'mdi-cash-multiple'},
             ]
         }
     },

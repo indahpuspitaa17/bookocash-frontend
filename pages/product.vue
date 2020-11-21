@@ -161,11 +161,8 @@
     head() {
     return {
       title: 'Product',
-      script: [
-        {src:'/product.js'}
-      ]
-    }
-  },
+      }
+    },
     data: () => ({
       dialog: false,
       dialogDelete: false,
