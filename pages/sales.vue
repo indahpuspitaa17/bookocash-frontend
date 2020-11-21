@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import OrderProcess from '../components/Sales/OrderProcess'
-import OrderFinished from '../components/Sales/OrderFinished'
+import OrderProcess from '../components/sales/OrderProcess'
+import OrderFinished from '../components/sales/OrderFinished'
 
 export default {
     name: 'sales',

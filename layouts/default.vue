@@ -83,6 +83,11 @@ export default {
           to: '/dashboard'
         },
         {
+          icon: 'mdi-view-dashboard',
+          title: 'Produk',
+          to: '/produk'
+        },
+        {
           icon: 'mdi-sale',
           title: 'Sales',
           to: '/sales'

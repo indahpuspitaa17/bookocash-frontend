@@ -2,17 +2,24 @@
     <v-container>
         <v-row>
         <template>
-            <v-col  cols="12" sm="6" md="3">
+            <v-col  
+            v-for="item in summary"
+            :key="item"
+            cols="24"
+            sm="3">
                 <v-card color="#363062" dark class="pa-5">
-                    <v-list-item two-line>
-                    <v-list-item-content>
-                        <v-list-item-title class="headline font-weight-black">indah</v-list-item-title>
-                        <v-divider></v-divider>
-                        <v-list-item-subtitle class="body-2 text-capitalize">indah </v-list-item-subtitle>
-                    </v-list-item-content>
-                    <v-list-item-action>
-                        <v-icon large>o</v-icon>
-                    </v-list-item-action>
+                    <v-list-item>
+                        <v-list-item-content>
+                            <v-list-item-title 
+                                class="headline font-weight-black"
+                                >{{ item.price }}
+                            </v-list-item-title>
+                            <v-divider></v-divider>
+                            <v-list-item-subtitle 
+                                class="body-2 text-capitalize"
+                                >{{ item.name }}
+                            </v-list-item-subtitle>
+                        </v-list-item-content>
                     </v-list-item>
                 </v-card>
             </v-col>
@@ -23,7 +30,24 @@
 
 <script>
 export default {
-    name: 'dashboard',
+    head() {
+    return {
+      title: 'Dashboard',
+      script: [
+        {src:'/dashboard.js'}
+      ]
+    }
+    },
+    data() {
+        return {
+            summary: [
+                {name: 'Total Income', price: '13.000'},
+                {name: 'Total Customer', price: '14'},
+                {name: 'Total Sales', price: '15.000'},
+                {name: 'Total Product', price: '19.000'}
+            ]
+        }
+    },
     summary: [],
     
 }

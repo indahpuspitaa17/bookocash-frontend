@@ -63,6 +63,14 @@
 
 <script>
   export default {
+    head() {
+    return {
+      title: 'Store',
+      script: [
+        {src:'/store.js'}
+      ]
+    }
+  },
     data: () => ({
       valid: true,
       name: '',
