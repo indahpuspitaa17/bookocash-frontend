@@ -2,24 +2,14 @@
   <v-data-table
     :headers="headers"
     :items="desserts"
-    sort-by="calories"
     class="elevation-1"
   > 
-
-    <template v-slot:item.calories="{ item }">
-      <v-chip
-        :color="getColor(item.calories)"
-        dark
-      >
-        {{ item.calories }}
-      </v-chip>
-    </template>
 
     <template v-slot:top>
       <v-toolbar
         flat
       >
-        <v-toolbar-title>Product List</v-toolbar-title>
+        <v-toolbar-title class="font-weight-bold">Product List</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-dialog
           v-model="dialog"
@@ -36,6 +26,7 @@
               Add Product
             </v-btn>
           </template>
+
           <v-card>
             <v-card-title>
               <span class="headline">{{ formTitle }}</span>
@@ -51,7 +42,7 @@
                   >
                     <v-text-field
                       v-model="editedItem.name"
-                      label="Ingredient name"
+                      label="Product"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -60,8 +51,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.calories"
-                      label="Stock"
+                      v-model="editedItem.category"
+                      label="Category"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -70,8 +61,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.fat"
-                      label="Fat (g)"
+                      v-model="editedItem.price"
+                      label="Price"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -80,18 +71,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.carbs"
-                      label="Carbs (g)"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.protein"
-                      label="Protein (g)"
+                      v-model="editedItem.hpp"
+                      label="HPP"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -101,7 +82,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-                color="blue darken-1"
+                color="red darken-1"
                 text
                 @click="close"
               >
@@ -167,30 +148,25 @@
       dialog: false,
       dialogDelete: false,
       headers: [
-        {
-          text: 'Ingredients',
-          align: 'start',
-          sortable: false,
-          value: 'name',
-        },
-        { text: 'Category', value: 'fat' },
-        { text: 'Selling Price (Rp)', value: 'carbs' },
-        { text: 'Stock', value: 'calories' },
+        { text: 'Product', align: 'start', sortable: false,value: 'name', },
+        { text: 'Category', value: 'category' },
+        { text: 'Selling Price', value: 'price' },
+        { text: 'HPP', value: 'hpp' },
         { text: 'Actions', value: 'actions', sortable: false },
       ],
       desserts: [],
       editedIndex: -1,
       editedItem: {
         name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
+        category: '',
+        price: '',
+        hpp: '',
       },
       defaultItem: {
         name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
+        category: '',
+        price: '',
+        hpp: '',
       },
     }),
 
@@ -221,66 +197,16 @@
       },
       initialize () {
         this.desserts = [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-          },
-          {
-            name: 'Eclair',
-            calories: 62,
-            fat: 16.0,
-            carbs: 23,
-          },
-          {
-            name: 'Cupcake',
-            calories: 30,
-            fat: 3.7,
-            carbs: 67,
-          },
-          {
-            name: 'Gingerbread',
-            calories: 56,
-            fat: 16.0,
-            carbs: 49,
-          },
-          {
-            name: 'Jelly bean',
-            calories: 75,
-            fat: 0.0,
-            carbs: 94,
-          },
-          {
-            name: 'Lollipop',
-            calories: 92,
-            fat: 0.2,
-            carbs: 98,
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-          },
+          { name: 'Frozen Yogurt', category: 6.0, price: 'Rp 12.000', hpp: 'Rp 10.000', },
+          { name: 'Ice cream sandwich', category: 9.0, price: 'Rp 20.000', hpp: 'Rp 12.000', },
+          { name: 'Eclair', category: 16.0, price: 'Rp 23.000', hpp: 'Rp 20.000', },
+          { name: 'Cupcake', category: 3.7, price: 'Rp 90.000', hpp: 'Rp 82.000', },
+          { name: 'Gingerbread', category: 16.0, price: 'Rp 45.000', hpp: 'Rp 32.000', },
+          { name: 'Jelly bean', category: 0.0, price: 'Rp 43.000', hpp: 'Rp 39.000', },
+          { name: 'Lollipop', category: 0.2, price: 'Rp 67.000', hpp: 'Rp 62.000', },
+          { name: 'Honeycomb', category: 3.2, price: 'Rp 55.000', hpp: 'Rp 45.000', },
+          { name: 'Donut', category: 25.0, price: 'Rp 89.000', hpp: 'Rp 79.000', },
+          { name: 'KitKat', category: 26.0, price: 'Rp 78.000', hpp: 'Rp 70.000', },
         ]
       },
 
