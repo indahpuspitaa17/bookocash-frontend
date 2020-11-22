@@ -5,7 +5,7 @@
       dark
       flat
     >
-      <v-toolbar-title>Sales Record</v-toolbar-title>
+      <v-toolbar-title class="font-weight-bold">Sales Record</v-toolbar-title>
       <v-spacer></v-spacer>
 
       <template v-slot:extension>
