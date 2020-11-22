@@ -2,22 +2,24 @@
   <v-data-table
     :headers="headers"
     :items="desserts"
-    sort-by="calories"
+    sort-by="stock"
     class="elevation-1"
   > 
 
-    <template v-slot:item.calories="{ item }">
+    <template v-slot:item.stock="{ item }">
       <v-chip
-        :color="getColor(item.calories)"
+        :color="getColor(item.stock)"
         dark
       >
-        {{ item.calories }}
+        {{ item.stock }}
       </v-chip>
     </template>
 
     <template v-slot:top>
       <v-toolbar
         flat
+        color="#363062" 
+              dark
       >
         <v-toolbar-title>Inventory</v-toolbar-title>
         <v-spacer></v-spacer>
@@ -27,7 +29,7 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
-              color="#363062" 
+              color="#827397" 
               dark
               class="mb-2"
               v-bind="attrs"
@@ -51,7 +53,7 @@
                   >
                     <v-text-field
                       v-model="editedItem.name"
-                      label="Ingredient name"
+                      label="Ingridients"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -60,7 +62,7 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.calories"
+                      v-model="editedItem.stock"
                       label="Stock"
                     ></v-text-field>
                   </v-col>
@@ -80,18 +82,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.carbs"
-                      label="Carbs (g)"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.protein"
-                      label="Protein (g)"
+                      v-model="editedItem.amount"
+                      label="Amount"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -170,30 +162,25 @@
       dialog: false,
       dialogDelete: false,
       headers: [
-        {
-          text: 'Ingredients',
-          align: 'start',
-          sortable: false,
-          value: 'name',
-        },
-        { text: 'Amount', value: 'carbs' },
+        { text: 'Ingredients', align: 'start', sortable: false, value: 'name', },
+        { text: 'Amount', value: 'amount' },
         { text: 'Last Update', value: 'fat' },
-        { text: 'Stock', value: 'calories' },
+        { text: 'Stock', value: 'stock' },
         { text: 'Actions', value: 'actions', sortable: false },
       ],
       desserts: [],
       editedIndex: -1,
       editedItem: {
         name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
+        stock: '',
+        fat: '',
+        amount: '',
       },
       defaultItem: {
         name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
+        stock: '',
+        fat: '',
+        amount: '',
       },
     }),
 
@@ -217,73 +204,23 @@
     },
 
     methods: {
-      getColor (calories) {
-        if (calories < 40) return 'red'
-        else if (calories < 100) return 'orange'
+      getColor (stock) {
+        if (stock < 40) return 'red'
+        else if (stock < 100) return 'orange'
         else return 'green'
       },
       initialize () {
         this.desserts = [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-          },
-          {
-            name: 'Eclair',
-            calories: 62,
-            fat: 16.0,
-            carbs: 23,
-          },
-          {
-            name: 'Cupcake',
-            calories: 30,
-            fat: 3.7,
-            carbs: 67,
-          },
-          {
-            name: 'Gingerbread',
-            calories: 56,
-            fat: 16.0,
-            carbs: 49,
-          },
-          {
-            name: 'Jelly bean',
-            calories: 75,
-            fat: 0.0,
-            carbs: 94,
-          },
-          {
-            name: 'Lollipop',
-            calories: 92,
-            fat: 0.2,
-            carbs: 98,
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-          },
+          { name: 'Frozen Yogurt', stock: 159, fat: 6.0, amount: 24, },
+          { name: 'Ice cream sandwich', stock: 237, fat: 9.0, amount: 37, },
+          { name: 'Eclair', stock: 62, fat: 16.0, amount: 23, },
+          { name: 'Cupcake', stock: 30, fat: 3.7, amount: 67, },
+          { name: 'Gingerbread', stock: 56, fat: 16.0, amount: 49, },
+          { name: 'Jelly bean', stock: 75, fat: 0.0, amount: 94, },
+          { name: 'Lollipop', stock: 92, fat: 0.2, amount: 98, },
+          { name: 'Honeycomb', stock: 408, fat: 3.2, amount: 87, },
+          { name: 'Donut', stock: 452, fat: 25.0, amount: 51, },
+          { name: 'KitKat', stock: 518, fat: 26.0, amount: 65, },
         ]
       },
 
