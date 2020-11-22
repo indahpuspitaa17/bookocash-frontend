@@ -71,10 +71,29 @@
                     sm="6"
                     md="4"
                   >
-                    <v-text-field
-                      v-model="editedItem.fat"
-                      label="Date"
-                    ></v-text-field>
+                    <v-menu
+                      v-model="editedItem.date"
+                      :close-on-content-click="false"
+                      :nudge-right="40"
+                      transition="scale-transition"
+                      offset-y
+                      min-width="290px"
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                          v-model="date"
+                          label="Date"
+                          prepend-icon="mdi-calendar"
+                          readonly
+                          v-bind="attrs"
+                          v-on="on"
+                        ></v-text-field>
+                      </template>
+                      <v-date-picker
+                        v-model="date"
+                        @input="editedItem.date = false"
+                      ></v-date-picker>
+                    </v-menu>
                   </v-col>
                   <v-col
                     cols="12"
@@ -93,7 +112,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-                color="blue darken-1"
+                color="red darken-1"
                 text
                 @click="close"
               >
@@ -159,12 +178,14 @@
     }
   },
     data: () => ({
+      date: new Date().toISOString().substr(0, 10),
+      modal: false,
       dialog: false,
       dialogDelete: false,
       headers: [
         { text: 'Ingredients', align: 'start', sortable: false, value: 'name', },
         { text: 'Amount', value: 'amount' },
-        { text: 'Last Update', value: 'fat' },
+        { text: 'Last Update', value: 'date' },
         { text: 'Stock', value: 'stock' },
         { text: 'Actions', value: 'actions', sortable: false },
       ],
@@ -173,13 +194,13 @@
       editedItem: {
         name: '',
         stock: '',
-        fat: '',
+        date: '',
         amount: '',
       },
       defaultItem: {
         name: '',
         stock: '',
-        fat: '',
+        date: '',
         amount: '',
       },
     }),
@@ -211,16 +232,16 @@
       },
       initialize () {
         this.desserts = [
-          { name: 'Frozen Yogurt', stock: 159, fat: 6.0, amount: 24, },
-          { name: 'Ice cream sandwich', stock: 237, fat: 9.0, amount: 37, },
-          { name: 'Eclair', stock: 62, fat: 16.0, amount: 23, },
-          { name: 'Cupcake', stock: 30, fat: 3.7, amount: 67, },
-          { name: 'Gingerbread', stock: 56, fat: 16.0, amount: 49, },
-          { name: 'Jelly bean', stock: 75, fat: 0.0, amount: 94, },
-          { name: 'Lollipop', stock: 92, fat: 0.2, amount: 98, },
-          { name: 'Honeycomb', stock: 408, fat: 3.2, amount: 87, },
-          { name: 'Donut', stock: 452, fat: 25.0, amount: 51, },
-          { name: 'KitKat', stock: 518, fat: 26.0, amount: 65, },
+          { name: 'Frozen Yogurt', stock: 159, date: '', amount: 24, },
+          { name: 'Ice cream sandwich', stock: 237, date: 9.0, amount: 37, },
+          { name: 'Eclair', stock: 62, date: 16.0, amount: 23, },
+          { name: 'Cupcake', stock: 30, date: 3.7, amount: 67, },
+          { name: 'Gingerbread', stock: 56, date: 16.0, amount: 49, },
+          { name: 'Jelly bean', stock: 75, date: 0.0, amount: 94, },
+          { name: 'Lollipop', stock: 92, date: 0.2, amount: 98, },
+          { name: 'Honeycomb', stock: 408, date: 3.2, amount: 87, },
+          { name: 'Donut', stock: 452, date: 25.0, amount: 51, },
+          { name: 'KitKat', stock: 518, date: 26.0, amount: 65, },
         ]
       },
 
