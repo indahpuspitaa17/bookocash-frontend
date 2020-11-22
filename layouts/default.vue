@@ -88,12 +88,12 @@ export default {
           to: '/produk'
         },
         {
-          icon: 'mdi-sale',
+          icon: 'mdi-desktop-classic',
           title: 'Sales',
           to: '/sales'
         },
         {
-          icon: 'mdi-briefcase',
+          icon: 'mdi-server',
           title: 'Product',
           to: '/product'
         },
@@ -103,7 +103,7 @@ export default {
           to: '/inventory'
         },
         {
-          icon: 'mdi-book-open',
+          icon: 'mdi-poll',
           title: 'Reporting',
           to: '/reporting'
         },
