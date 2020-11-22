@@ -18,8 +18,6 @@
     <template v-slot:top>
       <v-toolbar
         flat
-        color="#363062" 
-              dark
       >
         <v-toolbar-title>Inventory</v-toolbar-title>
         <v-spacer></v-spacer>
