@@ -1,64 +1,85 @@
 <template>
-    <v-form
-        ref="form"
-        v-model="valid"
-        lazy-validation
-    >
-        <v-text-field
-        v-model="name"
-        :counter="10"
-        :rules="nameRules"
-        label="Restaurant Name"
-        required
-        ></v-text-field>
-
-        <v-text-field
-            v-model="address"
-            :counter="100"
-            :rules="addressRules"
-            label="Address"
-            required
-        ></v-text-field>
-
-        <v-text-field
-            v-model="owner"
-            :counter="30"
-            :rules="ownerRules"
-            label="Owner Name"
-            required
-        ></v-text-field>
-
-        <v-text-field
-            v-model="phone"
-            :counter="12"
-            :rules="phoneRules"
-            label="Phone"
-        ></v-text-field>
-
-        <v-text-field
-        v-model="email"
-        :rules="emailRules"
-        label="E-mail"
-        required
-        ></v-text-field>
-
-        <v-btn
-        :disabled="!valid"
-        color="success"
-        class="mr-4"
-        @click="validate"
+  <v-card>
+    <v-card-title>
+      <span class="font-weight-bold"> Store Profile </span>
+    </v-card-title>
+    <v-row>
+      <!-- STORE PROFILE -->
+      <v-col class="px-6 ma-2">
+        <v-form
+            ref="form"
+            v-model="valid"
+            lazy-validation
         >
-        Update
-        </v-btn>
+          <v-text-field
+          v-model="name"
+          :counter="10"
+          :rules="nameRules"
+          label="Restaurant Name"
+          required
+          ></v-text-field>
 
-        <v-btn
-        color="error"
-        class="mr-4"
-        @click="reset"
-        >
-        Reset Form
-        </v-btn>
-    </v-form>
+          <v-text-field
+              v-model="address"
+              :counter="100"
+              :rules="addressRules"
+              label="Address"
+              required
+          ></v-text-field>
+
+          <v-text-field
+              v-model="owner"
+              :counter="30"
+              :rules="ownerRules"
+              label="Owner Name"
+              required
+          ></v-text-field>
+
+          <v-text-field
+              v-model="phone"
+              :counter="12"
+              :rules="phoneRules"
+              label="Phone"
+          ></v-text-field>
+
+          <v-text-field
+          v-model="email"
+          :rules="emailRules"
+          label="E-mail"
+          required
+          ></v-text-field>
+
+          <v-file-input
+            label="Click to upload profile picture"
+            filled
+            prepend-icon="mdi-camera"
+          ></v-file-input>
+
+          <v-btn
+          color="error"
+          class="mr-4"
+          @click="reset"
+          >
+          Reset Form
+          </v-btn>
+
+          <v-btn
+          :disabled="!valid"
+          color="success"
+          class="mr-4"
+          @click="validate"
+          >
+          Update
+          </v-btn>
+        </v-form>
+      </v-col>
+
+      <!-- UPDATED STORE PROFILE -->
+      <v-col class="px-6 ma-2">
+      haindah
+      </v-col>
+    </v-row>
+  </v-card>
 </template>
 
 <script>
