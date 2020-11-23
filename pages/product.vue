@@ -120,44 +120,63 @@
                           @click="addIngridient"> ADD 
                         </v-btn>
                       </v-col>
+                      
+                      <v-col>
+                        <v-row
+                          v-for="(add, index) in adds"
+                          :key="add"
+                        >
+                          <v-col
+                          cols="12"
+                          sm="3"
+                          md="3"
+                          >
+                            <v-text-field
+                              v-model="add.ingridients"
+                              label="Ingridients"
+                              :rules="[v => !!v || 'Ingridients is required']"
+                              required
+                            ></v-text-field>
+                          </v-col>
 
-                      <v-col
-                      cols="12"
-                      sm="3"
-                      md="4"
-                      >
-                        <v-text-field
-                          v-model="editedItem.price"
-                          label="Ingridients"
-                          :rules="[v => !!v || 'Ingridients is required']"
-                          required
-                        ></v-text-field>
-                      </v-col>
+                          <v-col
+                          cols="12"
+                          sm="3"
+                          md="3"
+                          >
+                            <v-text-field
+                              v-model="add.amount"
+                              label="Amount"
+                              :rules="[v => !!v || 'Amount is required']"
+                              required
+                            ></v-text-field>
+                          </v-col>
 
-                      <v-col
-                      cols="12"
-                      sm="3"
-                      md="4"
-                      >
-                        <v-text-field
-                          v-model="editedItem.price"
-                          label="Ingridients"
-                          :rules="[v => !!v || 'Ingridients is required']"
-                          required
-                        ></v-text-field>
-                      </v-col>
+                          <v-col
+                          cols="12"
+                          sm="3"
+                          md="3"
+                          >
+                            <v-text-field
+                              v-model="add.unit"
+                              label="Unit"
+                              :rules="[v => !!v || 'Unit is required']"
+                              required
+                            ></v-text-field>
+                          </v-col>
 
-                      <v-col
-                      cols="12"
-                      sm="3"
-                      md="4"
-                      >
-                        <v-text-field
-                          v-model="editedItem.price"
-                          label="Ingridients"
-                          :rules="[v => !!v || 'Ingridients is required']"
-                          required
-                        ></v-text-field>
+                          <v-col
+                          cols="12"
+                          sm="3"
+                          md="3">
+                            <span 
+                              class="float-right" 
+                              style="cursor:pointer"
+                              @click="deleteIngridient(index)">
+                                <v-icon>mdi-close</v-icon>
+                            </span>
+                          </v-col>
+                        </v-row>
                       </v-col>
                     </v-row>
                   </v-container>
@@ -236,6 +255,13 @@
       dialog: false,
       dialogDelete: false,
       select: null,
+      adds: [
+        {
+          ingridients: '',
+          amount: '',
+          unit: ''
+        }
+      ],
       category: [
         'Food',
         'Beverage',
@@ -293,7 +319,14 @@
 
     methods: {
       addIngridient () {
-
+        this.adds.push({
+          ingridients: '',
+          amount: '',
+          unit: ''
+        })
+      },
+      deleteIngridient (index) {
+        this.adds.splice(index, 1)
       },
       initialize () {
         this.desserts = [
