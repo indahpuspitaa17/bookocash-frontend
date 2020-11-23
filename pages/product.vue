@@ -13,7 +13,7 @@
         <v-spacer></v-spacer>
         <v-dialog
           v-model="dialog"
-          max-width="800px"
+          max-width="1000px"
         >
           <!-- ADD PRODUCT -->
           <template v-slot:activator="{ on, attrs }">
@@ -41,7 +41,6 @@
                       Product Details
                     </div>
                     <v-row>
-                      
                       <v-col
                         cols="12"
                         sm="6"
@@ -92,12 +91,12 @@
                         ></v-text-field>
                       </v-col>
                       <v-col>
-                      <v-file-input
-                        label="Click to upload product picture"
-                        filled
-                        prepend-icon="mdi-camera"
-                      ></v-file-input>
-                    </v-col>
+                        <v-file-input
+                          label="Click to upload product picture"
+                          filled
+                          prepend-icon="mdi-camera"
+                        ></v-file-input>
+                      </v-col>
                     </v-row>
                   </v-container>
                 </v-card-text>
@@ -120,6 +119,45 @@
                           dark
                           @click="addIngridient"> ADD 
                         </v-btn>
+                      </v-col>
+
+                      <v-col
+                      cols="12"
+                      sm="3"
+                      md="4"
+                      >
+                        <v-text-field
+                          v-model="editedItem.price"
+                          label="Ingridients"
+                          :rules="[v => !!v || 'Ingridients is required']"
+                          required
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col
+                      cols="12"
+                      sm="3"
+                      md="4"
+                      >
+                        <v-text-field
+                          v-model="editedItem.price"
+                          label="Ingridients"
+                          :rules="[v => !!v || 'Ingridients is required']"
+                          required
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col
+                      cols="12"
+                      sm="3"
+                      md="4"
+                      >
+                        <v-text-field
+                          v-model="editedItem.price"
+                          label="Ingridients"
+                          :rules="[v => !!v || 'Ingridients is required']"
+                          required
+                        ></v-text-field>
                       </v-col>
                     </v-row>
                   </v-container>
@@ -254,6 +292,9 @@
     },
 
     methods: {
+      addIngridient () {
+
+      },
       initialize () {
         this.desserts = [
           { name: 'Frozen Yogurt', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 12.000', hpp: 'Rp 10.000', },
