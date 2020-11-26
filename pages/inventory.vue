@@ -5,7 +5,6 @@
     sort-by="stock"
     class="elevation-1"
   > 
-
     <template v-slot:item.stock="{ item }">
       <v-chip
         :color="getColor(item.stock)"
@@ -27,7 +26,7 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
-              color="#827397" 
+              color="#363062" 
               dark
               class="mb-2"
               v-bind="attrs"
