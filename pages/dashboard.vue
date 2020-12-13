@@ -3,8 +3,8 @@
         <v-row>
         <template>
             <v-col  
-            v-for="item in summary"
-            :key="item"
+            v-for="(item, key) in summary"
+            :key="key"
             cols="24"
             sm="3">
                 <v-card color="#363062" dark class="pa-3">
@@ -50,7 +50,5 @@ export default {
             ]
         }
     },
-    summary: [],
-    
 }
 </script>

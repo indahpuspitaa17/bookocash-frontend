@@ -168,10 +168,7 @@
   export default {
     head() {
     return {
-      title: 'Inventory',
-      script: [
-        {src:'/inventory.js'}
-      ]
+      title: 'Inventory'
     }
   },
     data: () => ({

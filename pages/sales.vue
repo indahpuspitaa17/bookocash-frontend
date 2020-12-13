@@ -57,7 +57,6 @@ export default {
     return {
       title: 'Sales',
       script: [
-        {src:'/sales.js'}
       ]
     }
   },

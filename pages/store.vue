@@ -86,10 +86,7 @@
   export default {
     head() {
     return {
-      title: 'Store',
-      script: [
-        {src:'/store.js'}
-      ]
+      title: 'Store'
     }
   },
     data: () => ({

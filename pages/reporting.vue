@@ -6,10 +6,7 @@
 export default {
     head() {
     return {
-      title: 'Reporting',
-      script: [
-        {src:'/reporting.js'}
-      ]
+      title: 'Reporting'
     }
   },
 }
