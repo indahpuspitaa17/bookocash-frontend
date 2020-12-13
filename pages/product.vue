@@ -47,7 +47,7 @@
                         md="6"
                       >
                         <v-text-field
-                          v-model="editedItem.name"
+                          v-model="editedItem.product_name"
                           label="Product"
                           :rules="[v => !!v || 'Product is required']"
                           required
@@ -268,7 +268,7 @@
         'Dessert',
       ],
       headers: [
-        { text: 'Product', align: 'start', sortable: false,value: 'name', },
+        { text: 'Product', align: 'start', sortable: false,value: 'product_name', },
         { text: 'Category', value: 'category' },
         { text: 'Selling Price', value: 'price' },
         { text: 'HPP', value: 'hpp' },
@@ -277,7 +277,7 @@
       desserts: [],
       editedIndex: -1,
       editedItem: {
-        name: '',
+        product_name: '',
         category: [
           'Food'||
           'Beverage'||
@@ -287,7 +287,7 @@
         hpp: '',
       },
       defaultItem: {
-        name: '',
+        product_name: '',
         category: [
           'Food'||
           'Beverage'||
@@ -330,16 +330,16 @@
       },
       initialize () {
         this.desserts = [
-          { name: 'Frozen Yogurt', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 12.000', hpp: 'Rp 10.000', },
-          { name: 'Ice cream sandwich', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 20.000', hpp: 'Rp 12.000', },
-          { name: 'Eclair', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 23.000', hpp: 'Rp 20.000', },
-          { name: 'Cupcake', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 90.000', hpp: 'Rp 82.000', },
-          { name: 'Gingerbread', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 45.000', hpp: 'Rp 32.000', },
-          { name: 'Jelly bean', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 43.000', hpp: 'Rp 39.000', },
-          { name: 'Lollipop', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 67.000', hpp: 'Rp 62.000', },
-          { name: 'Honeycomb', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 55.000', hpp: 'Rp 45.000', },
-          { name: 'Donut', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 89.000', hpp: 'Rp 79.000', },
-          { name: 'KitKat', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 78.000', hpp: 'Rp 70.000', },
+          { product_name: 'Frozen Yogurt', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 12.000', hpp: 'Rp 10.000', },
+          { product_name: 'Ice cream sandwich', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 20.000', hpp: 'Rp 12.000', },
+          { product_name: 'Eclair', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 23.000', hpp: 'Rp 20.000', },
+          { product_name: 'Cupcake', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 90.000', hpp: 'Rp 82.000', },
+          { product_name: 'Gingerbread', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 45.000', hpp: 'Rp 32.000', },
+          { product_name: 'Jelly bean', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 43.000', hpp: 'Rp 39.000', },
+          { product_name: 'Lollipop', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 67.000', hpp: 'Rp 62.000', },
+          { product_name: 'Honeycomb', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 55.000', hpp: 'Rp 45.000', },
+          { product_name: 'Donut', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 89.000', hpp: 'Rp 79.000', },
+          { product_name: 'KitKat', category: ['Food'|| 'Beverage' || 'Dessert'], price: 'Rp 78.000', hpp: 'Rp 70.000', },
         ]
       },
 
