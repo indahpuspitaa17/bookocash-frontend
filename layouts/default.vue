@@ -82,11 +82,11 @@ export default {
           title: 'Dashboard',
           to: '/dashboard'
         },
-        // {
-        //   icon: 'mdi-view-dashboard',
-        //   title: 'Produk',
-        //   to: '/produk'
-        // },
+        {
+          icon: 'mdi-view-dashboard',
+          title: 'Produk',
+          to: '/produk'
+        },
         {
           icon: 'mdi-desktop-classic',
           title: 'Sales',
