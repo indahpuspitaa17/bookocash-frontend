@@ -1,12 +1,39 @@
+<!-- <template>
+  <v-card class="mx-auto my-12">
+    <v-img 
+      :src="require(`../assets/images/${product.gambar}`)">
+    </v-img>
+
+    <v-img :src="require(`~/assets/${product.gambar}`)"></v-img>
+
+    <v-card-title> {{ product.nama }} </v-card-title>
+    <v-card-text> 
+      <v-col>
+        <v-row>
+          Harga : Rp. {{ product.harga }} 
+        </v-row>
+        <v-row>
+          <v-btn 
+            color="success"
+            class="mr-4"
+            @click="product.id"> Pesan
+          </v-btn>
+        </v-row>
+      </v-col>
+    </v-card-text>
+    
+  </v-card>
+</template> -->
+
 <template>
   <div class="card shadow card-product">
-    <img :src=" 'assets/images/' + product.gambar " class="card-img-top" alt="..." />
+    <img v-bind:src=" '../assets/images/' + product.gambar " class="card-img-top" alt="..." />
     <div class="card-body">
       <h5 class="card-title">{{ product.nama }}</h5>
       <p
         class="card-text"
       >Harga : Rp. {{ product.harga }}</p>
-      <router-link class="btn btn-success" :to="'/foods/'+product.id"><b-icon-cart></b-icon-cart> Pesan</router-link>
+      <router-link class="btn btn-success" :to="'/foods/'+product.id"> Tambahkan </router-link>
     </div>
   </div>
 </template>
