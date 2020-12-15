@@ -1,14 +1,9 @@
-<template>
-  <v-layout column justify-center align-center></v-layout>
-</template>
+<template></template>
 
 <script>
 export default {
-  data() {
-    return {}
-  },
   mounted() {
-    this.$router.replace('/dashboard')
-  }
-}
+    this.$router.replace("/dashboard");
+  },
+};
 </script>

@@ -20,7 +20,7 @@
           <v-card-subtitle class="caption text-center"
             >Masukan akun yang telah terdaftar</v-card-subtitle
           >
-          
+
           <v-card-text>
             <v-form ref="form">
               <v-row>
@@ -30,7 +30,7 @@
                     prepend-inner-icon="mdi-account"
                     color="#363062"
                     solo
-                    :label="('Username')"
+                    :label="'Username'"
                     counter
                     autofocus
                     @keyup.enter="login()"
@@ -42,7 +42,7 @@
                     prepend-inner-icon="mdi-lock"
                     color="#363062"
                     solo
-                    :label="('Password')"
+                    :label="'Password'"
                     :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                     :type="show ? 'text' : 'password'"
                     counter
@@ -84,50 +84,55 @@
 </template>
 <script>
 export default {
-  layout: 'blank',
+  layout: "blank",
+  head() {
+    return {
+      title: "Sign Up",
+    };
+  },
   data() {
     return {
       alert: false,
       success: false,
-      messages: '',
+      messages: "",
       show: false,
       input: {
         email: null,
-        password: null
+        password: null,
       },
       rules: {
         required: (value) =>
-          !!value || `${this.$('text.required', 'capitalize')}`,
-        min: (value) => (!!value && value.length >= 6) || 'Minimum 6',
+          !!value || `${this.$("text.required", "capitalize")}`,
+        min: (value) => (!!value && value.length >= 6) || "Minimum 6",
         email: (value) =>
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             value
-          ) || `${this.$('helper.wrong_email', 'capitalize')}`
+          ) || `${this.$("helper.wrong_email", "capitalize")}`,
       },
       methods: {
         async register() {
-            if (!this.$refs.form.validate()) {
-                this.success = false
-                this.messages = 'Periksa kembali data yang diinput'
-                this.alert = true
-                return
+          if (!this.$refs.form.validate()) {
+            this.success = false;
+            this.messages = "Periksa kembali data yang diinput";
+            this.alert = true;
+            return;
+          }
+          try {
+            const result = await this.$api("user", "register", this.input);
+            if (result.status === 201) {
+              this.success = true;
+              this.messages = "User berhasil dibuat";
+              this.alert = true;
             }
-            try {
-                const result = await this.$api('user', 'register', this.input)
-                if (result.status === 201) {
-                this.success = true
-                this.messages = 'User berhasil dibuat'
-                this.alert = true
-                }
-            } catch (e) {
-                this.success = false
-                this.messages = 'Gagal register user'
-                this.alert = true
-            }
-        }
-        }
-    }
-  }
-}
+          } catch (e) {
+            this.success = false;
+            this.messages = "Gagal register user";
+            this.alert = true;
+          }
+        },
+      },
+    };
+  },
+};
 </script>
 <style scoped></style>

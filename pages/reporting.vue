@@ -1,13 +1,11 @@
-<template>
-    
-</template>
+<template></template>
 
 <script>
 export default {
-    head() {
+  head() {
     return {
-      title: 'Reporting'
-    }
+      title: "Reporting",
+    };
   },
-}
+};
 </script>>
