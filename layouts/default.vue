@@ -58,11 +58,7 @@
 </template>
 
 <script>
-import Logo from "../components/Logo";
 export default {
-  components: {
-    Logo,
-  },
   data() {
     return {
       clipped: false,
