@@ -52,18 +52,57 @@ export default {
     setProducts(data) {
       this.products = data;
     },
-    searchFood() {
+    getAllProducts() {
+      // get all product ke backend
+      // kalo backend nya udah bisa disambunging
       this.$axios
-        .get("http://localhost:3333/products?q=" + this.search)
+        .get("/products")
         .then((response) => this.setProducts(response.data))
         .catch((error) => console.log(error));
     },
+    getDummyProducts() {
+      const available = [
+        {
+          nama: "Bakso Urat",
+          gambar: "/images/bakso.jpg",
+        },
+        {
+          nama: "Kentang Goreng",
+          gambar: "/images/kentang-goreng.jpg",
+        },
+        {
+          nama: "Lontong Opor Ayam",
+          gambar: "/images/lontong-opor-ayam.jpg",
+        },
+        {
+          nama: "Mie Ayam Bakso",
+          gambar: "/images/mie-ayam-bakso.jpg",
+        },
+        {
+          nama: "Mie Goreng",
+          gambar: "/images/mie-goreng.jpg",
+        },
+        {
+          nama: "Nasi Ayam Geprek",
+          gambar: "/images/nasi-ayam-geprek.jpg",
+        },
+      ];
+
+      const data = available.map((item) => ({
+        ...item,
+        harga: this.getRandomInt(100000),
+        stock: this.getRandomInt(20),
+      }));
+
+      this.setProducts(data);
+    },
+    getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
+    },
+    searchFood() {},
   },
   mounted() {
-    this.$axios
-      .get("http://localhost:3333/products")
-      .then((response) => this.setProducts(response.data))
-      .catch((error) => console.log(error));
+    this.getDummyProducts();
   },
 };
 </script>

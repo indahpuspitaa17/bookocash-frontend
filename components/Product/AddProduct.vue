@@ -1,7 +1,7 @@
 <template>
   <v-card class="mx-auto my-12">
     <img
-      v-bind:src="'../assets/images/' + product.gambar"
+      :src="!!product.gambar ? product.gambar : '/assets/images/default.png'"
       class="card-img-top"
       alt="..."
     />
@@ -10,6 +10,7 @@
     <v-card-text>
       <v-col>
         <v-row> Harga : Rp. {{ product.harga }} </v-row>
+        <v-row> Stok : {{ product.stock }} </v-row>
         <v-row>
           <v-btn color="success" class="mr-4"> Pesan </v-btn>
         </v-row>
