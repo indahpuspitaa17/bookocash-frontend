@@ -1,10 +1,6 @@
-<!-- <template>
+<template>
   <v-card class="mx-auto my-12">
-    <v-img 
-      :src="require(`../assets/images/${product.gambar}`)">
-    </v-img>
-
-    <v-img :src="require(`~/assets/${product.gambar}`)"></v-img>
+    <img v-bind:src=" '../assets/images/' + product.gambar " class="card-img-top" alt="..." />
 
     <v-card-title> {{ product.nama }} </v-card-title>
     <v-card-text> 
@@ -16,15 +12,15 @@
           <v-btn 
             color="success"
             class="mr-4"
-            @click="product.id"> Pesan
+          > Pesan
           </v-btn>
         </v-row>
       </v-col>
     </v-card-text>
     
   </v-card>
-</template> -->
-
+</template>
+<!-- 
 <template>
   <div class="card shadow card-product">
     <img v-bind:src=" '../assets/images/' + product.gambar " class="card-img-top" alt="..." />
@@ -36,7 +32,7 @@
       <router-link class="btn btn-success" :to="'/foods/'+product.id"> Tambahkan </router-link>
     </div>
   </div>
-</template>
+</template> -->
 
 <script>
 export default {
