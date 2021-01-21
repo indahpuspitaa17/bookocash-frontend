@@ -126,7 +126,7 @@ export default {
     dialogDelete: false,
     headers: [
       { text: "Ingredients", align: "start", sortable: false, value: "name" },
-      { text: "Amount", value: "amount" },
+      // { text: "Amount", value: "amount" },
       { text: "Last Update", value: "date" },
       { text: "Stock", value: "stock" },
       { text: "Actions", value: "actions", sortable: false },
@@ -174,16 +174,16 @@ export default {
     },
     initialize() {
       this.desserts = [
-        { name: "Frozen Yogurt", stock: 159, date: "", amount: 24 },
-        { name: "Ice cream sandwich", stock: 237, date: 9.0, amount: 37 },
-        { name: "Eclair", stock: 62, date: 16.0, amount: 23 },
-        { name: "Cupcake", stock: 30, date: 3.7, amount: 67 },
-        { name: "Gingerbread", stock: 56, date: 16.0, amount: 49 },
-        { name: "Jelly bean", stock: 75, date: 0.0, amount: 94 },
-        { name: "Lollipop", stock: 92, date: 0.2, amount: 98 },
-        { name: "Honeycomb", stock: 408, date: 3.2, amount: 87 },
-        { name: "Donut", stock: 452, date: 25.0, amount: 51 },
-        { name: "KitKat", stock: 518, date: 26.0, amount: 65 },
+        { name: "Frozen Yogurt", stock: 159, date: "12-11-2020", amount: 24 },
+        { name: "Ice cream sandwich", stock: 237, date: "12-11-2020", amount: 37 },
+        { name: "Eclair", stock: 62, date: "12-11-2020", amount: 23 },
+        { name: "Cupcake", stock: 30, date: "22-11-2020", amount: 67 },
+        { name: "Gingerbread", stock: 56, date: "22-11-2020", amount: 49 },
+        { name: "Jelly bean", stock: 75, date: "22-11-2020", amount: 94 },
+        { name: "Lollipop", stock: 92, date: "22-11-2020", amount: 98 },
+        { name: "Honeycomb", stock: 408, date: "22-11-2020", amount: 87 },
+        { name: "Donut", stock: 452, date: "13-11-2020", amount: 51 },
+        { name: "KitKat", stock: 518, date: "13-11-2020", amount: 65 },
       ];
     },
 
